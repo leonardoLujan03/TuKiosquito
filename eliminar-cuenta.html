@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
   <title>Eliminar cuenta | Tu Kiosquito</title>
   <style>
     body { font-family: system-ui, Arial; margin: 0; padding: 24px; }
-    .wrap { max-width: 760px; margin: 0 auto; }
+    .wrap { max-width: 860px; margin: 0 auto; }
     .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; }
     label { display: block; margin-top: 12px; font-weight: 600; }
     input { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc; }
@@ -21,28 +22,59 @@
       background: #fff8e1;
       color: #5a4100;
     }
+    .info {
+      margin: 14px 0;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #90caf9;
+      background: #e3f2fd;
+      color: #0d47a1;
+    }
     .msg { margin-top: 12px; padding: 10px; border-radius: 10px; }
     .ok { background: #e8f5e9; border: 1px solid #a5d6a7; }
     .err { background: #ffebee; border: 1px solid #ef9a9a; }
+    h1 { margin-top: 0; }
+    h2 { margin: 18px 0 8px; font-size: 1.1rem; }
+    ul, ol { margin: 8px 0 0 22px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    a { color: inherit; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 780px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>Eliminar cuenta – Tu Kiosquito</h1>
+
     <p class="muted">
-      Ingresá el correo y contraseña de tu cuenta. Esta acción es irreversible.
+      Esta página pertenece a <strong>Tu Kiosquito</strong> (Android) y te permite solicitar la eliminación de tu cuenta
+      y los datos asociados. Este enlace puede mostrarse en Google Play Store.
     </p>
 
     <div class="warn">
-      <strong>Importante:</strong> si tu cuenta tenía una <strong>suscripción activa</strong> o acceso a un <strong>plan pago</strong>,
-      al eliminar la cuenta <strong>perderás el acceso</strong> asociado a esa cuenta.
+      <strong>Importante:</strong> esta acción es <strong>irreversible</strong>. Si tu cuenta tenía una <strong>suscripción activa</strong>
+      o acceso a un <strong>plan pago</strong>, al eliminar la cuenta <strong>perderás el acceso</strong> asociado a esa cuenta.
       <br/>
       <span class="muted">
-        (La cancelación de cobros depende del proveedor de pagos; si corresponde, gestioná la suscripción desde Google Play u otro medio.)
+        La cancelación de cobros depende del proveedor de pagos. Si corresponde, gestioná tu suscripción desde Google Play u otro medio.
       </span>
     </div>
 
-    <div class="card">
+    <!-- =========================
+         Formulario de eliminación directa (backend)
+         ========================= -->
+    <div class="card" aria-label="Formulario de eliminación de cuenta">
+      <h2>Eliminar cuenta ahora</h2>
+      <p class="muted">
+        Ingresá el correo y la contraseña de tu cuenta de <strong>Tu Kiosquito</strong> para eliminarla.
+      </p>
+
       <label for="email">Correo</label>
       <input id="email" type="email" autocomplete="email" placeholder="tuemail@ejemplo.com" />
 
@@ -52,13 +84,81 @@
       <button class="danger" id="btn">Eliminar mi cuenta</button>
 
       <div id="msg" class="msg" style="display:none;"></div>
+
+      <p class="muted" style="margin-top:12px;">
+        Endpoint utilizado: <code id="endpointText"></code>
+      </p>
+    </div>
+
+    <!-- =========================
+         Lo que pide Play Console (pasos + datos + retención)
+         ========================= -->
+    <div class="card" style="margin-top:16px;">
+      <h2>Pasos para solicitar la eliminación</h2>
+      <ol>
+        <li>Usá el formulario de arriba ingresando tu <strong>correo</strong> y <strong>contraseña</strong>.</li>
+        <li>Confirmá la acción cuando el navegador te lo solicite.</li>
+        <li>Si las credenciales son correctas, la cuenta se elimina y vas a ver una confirmación en pantalla.</li>
+      </ol>
+
+      <div class="info">
+        <strong>Alternativa si no podés acceder:</strong>
+        escribí a <a href="mailto:leonardoj.lujan03@gmail.com?subject=Solicitud%20de%20eliminaci%C3%B3n%20de%20cuenta%20-%20Tu%20Kiosquito">leonardoj.lujan03@gmail.com</a>
+        con el asunto <code>Solicitud de eliminación de cuenta - Tu Kiosquito</code> e indicando el correo de tu cuenta.
+      </div>
+
+      <h2>Datos que se eliminarán</h2>
+      <p class="muted">Al aprobarse la solicitud, se elimina la cuenta y los datos asociados, incluyendo:</p>
+
+      <div class="grid">
+        <div class="card" style="margin:0;">
+          <strong>Datos de cuenta y perfil</strong>
+          <ul>
+            <li>Correo electrónico</li>
+            <li>Nombre de usuario</li>
+            <li>Nombre y apellido</li>
+            <li>Teléfono</li>
+            <li>Ciudad, provincia y país (si fueron provistos)</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin:0;">
+          <strong>Datos de plan / acceso</strong>
+          <ul>
+            <li>Plan asociado a la cuenta</li>
+            <li>Acceso habilitado por suscripción/plan pago para esa cuenta</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:12px;">
+        Nota: la contraseña no se guarda en texto plano; se almacena hasheada. Al eliminar la cuenta se elimina el registro completo.
+      </p>
+
+      <h2>Datos que podrían conservarse y retención</h2>
+      <p class="muted">
+        En general, al eliminar la cuenta no se conservan datos personales. No obstante, podrían conservarse por un período limitado
+        <strong>registros técnicos mínimos</strong> (por ejemplo logs del servidor) por motivos de seguridad y prevención de fraude.
+      </p>
+      <ul>
+        <li><strong>Retención adicional (si aplica):</strong> hasta <strong>30 días</strong> para registros técnicos mínimos.</li>
+      </ul>
+
+      <h2>Contacto del desarrollador</h2>
+      <p>
+        Desarrollador: <strong>Tu Kiosquito</strong><br/>
+        Contacto: <a href="mailto:leonardoj.lujan03@gmail.com">leonardoj.lujan03@gmail.com</a>
+      </p>
+      <p class="muted">Última actualización: 2026-01-31</p>
     </div>
   </div>
 
   <script>
-    // ⚠️ Cambiá esto por tu backend real (HTTPS)
-    const API_BASE = "https://TU-DOMINIO-BACKEND.com";
-    const ENDPOINT = `${API_BASE}/api/users/delete-account/`;
+    // Backend real que elimina la cuenta (según lo que pasaste)
+    const ENDPOINT = "https://brave-ange-ljlargtech-9ea76f4d.koyeb.app/api/users/delete-account/";
+
+    // Mostrar el endpoint en la UI
+    document.getElementById("endpointText").textContent = ENDPOINT;
 
     const btn = document.getElementById("btn");
     const email = document.getElementById("email");
