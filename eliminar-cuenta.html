@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>Eliminación de cuenta | Tu App</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.55;
+      padding: 24px;
+      background: Canvas;
+      color: CanvasText;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    header {
+      padding: 18px 16px;
+      border: 1px solid color-mix(in srgb, CanvasText 14%, transparent);
+      border-radius: 14px;
+      background: color-mix(in srgb, CanvasText 5%, transparent);
+    }
+    h1 { margin: 0 0 6px; font-size: 1.5rem; }
+    p, li { font-size: 1rem; }
+    .card {
+      margin-top: 16px;
+      padding: 18px 16px;
+      border: 1px solid color-mix(in srgb, CanvasText 14%, transparent);
+      border-radius: 14px;
+      background: color-mix(in srgb, CanvasText 4%, transparent);
+    }
+    h2 { margin: 0 0 10px; font-size: 1.15rem; }
+    .muted { opacity: 0.8; }
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, CanvasText 16%, transparent);
+      font-size: .9rem;
+      margin-left: 8px;
+      opacity: .85;
+    }
+    .box {
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px dashed color-mix(in srgb, CanvasText 20%, transparent);
+      background: color-mix(in srgb, CanvasText 3%, transparent);
+      overflow-wrap: anywhere;
+    }
+    a { color: LinkText; }
+    footer { margin-top: 18px; font-size: .95rem; opacity: .8; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 760px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Eliminación de cuenta y datos <span class="pill">Tu App</span></h1>
+      <p class="muted">
+        Esta página explica cómo solicitar la eliminación de tu cuenta y los datos asociados en <strong>Tu App</strong>.
+        Este enlace puede mostrarse en Google Play Store.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>Cómo solicitar la eliminación</h2>
+      <ol>
+        <li>
+          Enviá un correo desde tu email registrado a:
+          <strong><a href="mailto:soporte@tudominio.com?subject=Solicitud%20de%20eliminaci%C3%B3n%20de%20cuenta%20-%20Tu%20App">soporte@tudominio.com</a></strong>
+          <span class="muted">(cambiá este mail por el tuyo)</span>
+        </li>
+        <li>
+          En el mensaje indicá:
+          <ul>
+            <li>Tu email de cuenta (con el que iniciás sesión)</li>
+            <li>Asunto recomendado: <code>Solicitud de eliminación de cuenta - Tu App</code></li>
+          </ul>
+        </li>
+        <li>
+          Procesaremos la solicitud y te confirmaremos por email cuando la eliminación haya finalizado.
+        </li>
+      </ol>
+
+      <div class="box">
+        <strong>Tiempo estimado de procesamiento:</strong>
+        hasta <strong>7 días hábiles</strong> desde la recepción del correo.
+        <span class="muted">(podés ajustar este plazo)</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Datos que se eliminarán</h2>
+      <p>Al aprobarse la solicitud, se eliminarán permanentemente los siguientes datos asociados a tu cuenta:</p>
+
+      <div class="grid">
+        <div class="box">
+          <strong>Datos de cuenta</strong>
+          <ul>
+            <li>Email</li>
+            <li>Nombre de usuario</li>
+            <li>Nombre y apellido</li>
+            <li>Teléfono</li>
+            <li>Ciudad, provincia y país</li>
+          </ul>
+        </div>
+        <div class="box">
+          <strong>Datos de suscripción/plan</strong>
+          <ul>
+            <li>Plan asociado a la cuenta</li>
+            <li>Estado de cuenta relacionado al plan</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="muted">
+        Nota: la contraseña no se guarda en texto plano; se almacena hasheada. Igual, al eliminar la cuenta, se elimina el registro completo.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Datos que podrían conservarse</h2>
+      <p>
+        Por defecto, <strong>no conservamos datos personales</strong> una vez eliminada la cuenta.
+        Sin embargo, en algunos casos podríamos conservar información mínima si fuera necesaria por obligaciones legales o de seguridad.
+      </p>
+
+      <div class="box">
+        <strong>Retención (si aplica):</strong> hasta <strong>30 días</strong> de registros técnicos mínimos
+        (por ejemplo, logs de servidor) para prevención de fraude/seguridad.
+        <span class="muted">(si no conservás nada, reemplazá esto por “No se conserva nada”.)</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Contacto</h2>
+      <p>
+        Si necesitás ayuda, escribinos a:
+        <strong><a href="mailto:soporte@tudominio.com">soporte@tudominio.com</a></strong>
+      </p>
+      <p class="muted">
+        Desarrollador / App: <strong>Tu App</strong> — <span class="muted">Actualizado: 2026-01-31</span>
+      </p>
+    </section>
+
+    <footer>
+      <p class="muted">
+        Este procedimiento aplica a cuentas creadas dentro de la app o mediante formularios vinculados a la app.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
